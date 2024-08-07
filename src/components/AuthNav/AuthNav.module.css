@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  gap: 24px;
+}
+
+.link {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #8789b8;
+}
+
+.active {
+  color: #e05757;
+}

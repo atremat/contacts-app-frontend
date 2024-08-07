@@ -1,0 +1,25 @@
+.container {
+  border: 1px solid #000;
+  border-radius: 5px;
+  width: 320px;
+  margin-top: 20px;
+  padding: 5px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 8px 0px;
+  transition: scale 0.3s ease;
+}
+
+.container:hover {
+  scale: 1.05;
+}
+
+.label {
+  display: block;
+}
+
+.searchIcon {
+  margin-right: 10px;
+}
+
+.input {
+  width: 100%;
+}

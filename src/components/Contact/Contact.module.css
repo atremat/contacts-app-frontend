@@ -1,0 +1,57 @@
+.listItem {
+  border: 1px solid #000;
+  border-radius: 5px;
+  display: flex;
+  flex-basis: 320px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 8px 0px;
+  transition: scale 0.3s ease;
+}
+
+.listItem:hover {
+  scale: 1.05;
+}
+
+.name {
+  padding-left: 10px;
+  font-size: 1.2em;
+}
+
+.numberWrapper {
+  padding-top: 5px;
+}
+
+.number {
+  padding-left: 10px;
+  font-size: 1.2em;
+}
+
+.btnWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.btnDelete,
+.btnEdit {
+  border: 1px solid #adadad;
+  border-radius: 4px;
+  height: 1.5rem;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.btnDelete:hover {
+  border: 1px solid #d20808;
+}
+
+.deleteIcon,
+.editIcon {
+  margin-right: 10px;
+}
+
+.btnEdit:hover {
+  border: 1px solid #008cff;
+}

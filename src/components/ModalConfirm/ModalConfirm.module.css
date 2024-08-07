@@ -1,0 +1,23 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.title {
+  text-align: center;
+}
+
+.question {
+  text-align: center;
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: space-around;
+}

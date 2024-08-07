@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+}
+
+.username {
+  font-size: 1.2rem;
+  color: #8789b8;
+}
+
+.logout {
+  border: 1px solid #adadad;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  color: #e05757;
+}
+
+.logout:hover {
+  border-color: brown;
+}
