@@ -1,5 +1,5 @@
 {
-  "name": "goit-react-hw-03",
+  "name": "contacts-app-frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@fontsource/roboto": "^5.0.14",
+    "@mui/icons-material": "^5.16.6",
+    "@mui/material": "^5.16.6",
     "@reduxjs/toolkit": "^2.2.3",
     "axios": "^1.6.8",
     "clsx": "^2.1.1",

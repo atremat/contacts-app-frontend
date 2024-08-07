@@ -7,6 +7,10 @@ import { persistor, store } from "./redux/store.js";
 import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
