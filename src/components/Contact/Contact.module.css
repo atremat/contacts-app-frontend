@@ -1,19 +1,19 @@
 .listItem {
-  border: 1px solid #000;
+  /* border: 1px solid #000;
   border-radius: 5px;
   display: flex;
   flex-basis: 320px;
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 8px 0px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 8px 0px; */
   transition: scale 0.3s ease;
 }
 
 .listItem:hover {
   scale: 1.05;
 }
-
+/*
 .name {
   padding-left: 10px;
   font-size: 1.2em;
@@ -54,4 +54,4 @@
 
 .btnEdit:hover {
   border: 1px solid #008cff;
-}
+} */

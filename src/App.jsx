@@ -1,4 +1,4 @@
-import "modern-normalize";
+// import "modern-normalize";
 import "./App.css";
 
 import { Route, Routes } from "react-router-dom";

@@ -2,7 +2,6 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL = "https://contacts-app-mm7s.onrender.com";
-// axios.defaults.baseURL = "http://localhost:3000";
 
 // Utility to add JWT
 const setAuthHeader = (token) => {
@@ -15,8 +14,8 @@ const clearAuthHeader = () => {
 };
 
 const api = axios.create({
-  baseURL: "http://localhost:3000", // Змінити на ваш базовий URL API
-  // baseURL: "http://example.com/api", // Змінити на ваш базовий URL API
+  baseURL: "https://contacts-app-mm7s.onrender.com",
+
   withCredentials: true, // Дозволити передачу файлів cookie
 });
 
