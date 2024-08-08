@@ -61,13 +61,7 @@ const contactsSlice = createSlice({
         state.loading = false;
 
         state.items = state.items.map((item) => {
-          return item._id === action.payload._id
-            ? {
-                name: action.payload.name,
-                _id: action.payload._id,
-                phoneNumber: action.payload.phoneNumber,
-              }
-            : item;
+          return item._id === action.payload._id ? { ...action.payload } : item;
         });
       })
       .addCase(editContact.rejected, isRejected);

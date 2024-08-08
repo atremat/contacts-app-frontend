@@ -1,8 +1,4 @@
-import { FaPhone } from "react-icons/fa6";
-import { FaUser } from "react-icons/fa";
 import css from "./Contact.module.css";
-import { LuUserMinus } from "react-icons/lu";
-import { LiaUserEditSolid } from "react-icons/lia";
 import { useDispatch } from "react-redux";
 import { setContactForEdit } from "../../redux/contacts/slice";
 import {
@@ -10,13 +6,17 @@ import {
   Card,
   CardActions,
   CardHeader,
+  Checkbox,
   IconButton,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import { editContact } from "../../redux/contacts/operations";
 
 const Contact = ({ contact, openModal }) => {
-  const { _id, name, phoneNumber } = contact;
+  const { _id, name, phoneNumber, isFavourite } = contact;
   const dispatch = useDispatch();
 
   const handleEdit = () => {
@@ -38,7 +38,6 @@ const Contact = ({ contact, openModal }) => {
       const value = (hash >> (i * 8)) & 0xff;
       color += `00${value.toString(16)}`.slice(-2);
     }
-    /* eslint-enable no-bitwise */
 
     return color;
   }
@@ -67,16 +66,22 @@ const Contact = ({ contact, openModal }) => {
               aria-label="contact-item"
             />
           }
-          // action={
-          //   <IconButton aria-label="settings">
-          //     <MoreVertIcon />
-          //   </IconButton>
-          // }
           title={name}
           subheader={phoneNumber}
         />
 
         <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <Checkbox
+              checked={isFavourite ?? false}
+              onChange={() => {
+                dispatch(editContact({ _id: _id, isFavourite: !isFavourite }));
+              }}
+              inputProps={{ "aria-label": "controlled" }}
+              icon={<FavoriteBorder />}
+              checkedIcon={<Favorite />}
+            />
+          </IconButton>
           <IconButton aria-label="edit" onClick={handleEdit}>
             <EditIcon />
           </IconButton>

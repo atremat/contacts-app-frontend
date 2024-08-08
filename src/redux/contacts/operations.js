@@ -69,13 +69,16 @@ export const deleteContact = createAsyncThunk(
 
 export const editContact = createAsyncThunk(
   "contacts/editContact",
-  async ({ _id, name, phoneNumber }, thunkAPI) => {
+  async (contact, thunkAPI) => {
     try {
+      const validContact = { ...contact };
+      delete validContact._id;
+
       const state = thunkAPI.getState();
       const accessToken = state.auth.token;
       const response = await axios.patch(
-        `/contacts/${_id}`,
-        { name, phoneNumber },
+        `/contacts/${contact._id}`,
+        { ...validContact },
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
