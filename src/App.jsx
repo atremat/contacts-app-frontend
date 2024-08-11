@@ -10,6 +10,7 @@ import { Layout } from "./components/Layout/Layout";
 import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import toast, { Toaster } from "react-hot-toast";
+import { CircularProgress } from "@mui/material";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const RegistrationPage = lazy(() =>
@@ -30,7 +31,10 @@ const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <div>
+      <p>In process. It can take a minute...</p>
+      <CircularProgress />
+    </div>
   ) : (
     <Layout>
       <Routes>

@@ -1,12 +1,8 @@
-.nav {
-  display: flex;
-  gap: 24px;
-}
-
 .link {
-  font-size: 1.5rem;
+  all: unset;
+  display: inline-block; /* Якщо потрібно зберегти блокове відображення */
   text-decoration: none;
-  color: #8789b8;
+  color: inherit;
 }
 
 .active {
