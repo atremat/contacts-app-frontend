@@ -6,6 +6,7 @@ import { LuUserPlus } from "react-icons/lu";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import toast from "react-hot-toast";
+import { Box, Button, InputLabel, TextField } from "@mui/material";
 
 const contactSchema = Yup.object().shape({
   name: Yup.string()
@@ -50,38 +51,60 @@ const ContactForm = () => {
       onSubmit={handleSubmit}
       validationSchema={contactSchema}
     >
-      <Form className={css.form}>
-        <div className={css.nameWrapper}>
-          <label htmlFor={nameFieldId} className={css.label}>
-            Name
-          </label>
-          <Field
-            type="text"
-            name="name"
-            id={nameFieldId}
-            className={css.input}
-          />
-          <ErrorMessage name="name" component="p" className={css.error} />
-        </div>
+      {({ values, handleChange, handleBlur }) => (
+        <Form>
+          <Box
+            sx={{
+              width: 320,
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+            }}
+          >
+            <Box>
+              <InputLabel htmlFor={nameFieldId}>Name</InputLabel>
+              <TextField
+                type="text"
+                name="name"
+                id={nameFieldId}
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                fullWidth
+                variant="outlined"
+                helperText={<ErrorMessage name="name" component="span" />}
+                // error={!!(<ErrorMessage name="name" />)}
+              />
+            </Box>
 
-        <div className={css.numberWrapper}>
-          <label htmlFor={numberFieldId} className={css.label}>
-            Number
-          </label>
-          <Field
-            type="tel"
-            name="number"
-            id={numberFieldId}
-            className={css.input}
-          />
-          <ErrorMessage name="number" component="p" className={css.error} />
-        </div>
+            <Box>
+              <InputLabel htmlFor={numberFieldId}>Number</InputLabel>
+              <TextField
+                type="tel"
+                name="number"
+                id={numberFieldId}
+                value={values.number}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                fullWidth
+                variant="outlined"
+                helperText={<ErrorMessage name="number" component="span" />}
+                // error={!!(<ErrorMessage name="number" />)}
+              />
+            </Box>
 
-        <button type="submit" className={css.btnSubmit}>
-          <LuUserPlus className={css.addIcon} />
-          Add contact
-        </button>
-      </Form>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              startIcon={<LuUserPlus />}
+            >
+              {/* <LuUserPlus className={css.addIcon} /> */}
+              Add contact
+            </Button>
+          </Box>
+        </Form>
+      )}
     </Formik>
   );
 };
