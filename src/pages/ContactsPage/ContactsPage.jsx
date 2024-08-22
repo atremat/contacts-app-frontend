@@ -1,4 +1,3 @@
-import { PiUserSquareFill } from "react-icons/pi";
 import ContactForm from "../../components/ContactForm/ContactForm";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import ContactList from "../../components/ContactList/ContactList";
@@ -12,6 +11,8 @@ import { fetchContacts } from "../../redux/contacts/operations";
 import { useEffect } from "react";
 import DocumentTitle from "../../components/DocumentTitle/DocumentTitle";
 import ContactEditForm from "../../components/ContactEditForm/ContactEditForm";
+import { Box, Typography } from "@mui/material";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 const ContactsPage = () => {
   const isLoading = useSelector(selectLoading);
@@ -27,11 +28,16 @@ const ContactsPage = () => {
     <>
       <DocumentTitle>Contacts</DocumentTitle>
 
-      <div className="main">
-        <h1 className="phonebook-header">
-          <PiUserSquareFill className="phonebook-icon" />
-          Phonebook
-        </h1>
+      <Box>
+        <Typography
+          component="h2"
+          sx={{ display: "flex", alignItems: "center", gap: 2 }}
+        >
+          <PersonAddIcon sx={{ width: 40, height: 40 }} />
+          <Typography component="span" variant="h3">
+            Phonebook
+          </Typography>
+        </Typography>
 
         {isContactToEdit ? <ContactEditForm /> : <ContactForm />}
 
@@ -39,7 +45,7 @@ const ContactsPage = () => {
         {isLoading && <p>Loading...</p>}
         {error && <p>{error}</p>}
         <ContactList />
-      </div>
+      </Box>
     </>
   );
 };

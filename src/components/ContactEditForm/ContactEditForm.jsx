@@ -1,13 +1,13 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
-import css from "./ContactEditForm.module.css";
 import { LiaSave } from "react-icons/lia";
 import { MdOutlineCancel } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { selectContactForEdit } from "../../redux/contacts/selectors";
 import { setContactForEdit } from "../../redux/contacts/slice";
 import { editContact } from "../../redux/contacts/operations";
+import { Box, Button, Card, TextField, Typography } from "@mui/material";
 
 const contactSchema = Yup.object().shape({
   name: Yup.string()
@@ -51,52 +51,77 @@ const ContactEditForm = () => {
       onSubmit={handleSubmit}
       validationSchema={contactSchema}
     >
-      <Form className={css.form}>
-        <div className={css.nameWrapper}>
-          <label htmlFor={nameFieldId} className={css.label}>
-            Name
-          </label>
-          <Field
-            type="text"
-            name="name"
-            id={nameFieldId}
-            className={css.input}
-          />
-          <ErrorMessage name="name" component="p" className={css.error} />
-        </div>
-
-        <div className={css.numberWrapper}>
-          <label htmlFor={numberFieldId} className={css.label}>
-            Number
-          </label>
-          <Field
-            type="tel"
-            name="phoneNumber"
-            id={numberFieldId}
-            className={css.input}
-          />
-          <ErrorMessage
-            name="phoneNumber"
-            component="p"
-            className={css.error}
-          />
-        </div>
-
-        <div className={css.btnWrapper}>
-          <button
-            className={css.btnCancel}
-            onClick={() => dispatch(setContactForEdit(null))}
+      {({ values, handleChange, handleBlur }) => (
+        <Form>
+          <Card
+            sx={{
+              transition: "transform 0.3s ease",
+              "&:hover": {
+                transform: "scale(1.03)",
+              },
+              width: 320,
+              marginTop: "20px",
+              padding: "15px 5px 5px",
+            }}
           >
-            <MdOutlineCancel className={css.btnCancel} />
-            Cancel
-          </button>
+            <Box sx={{ marginBottom: 4 }}>
+              {/* <InputLabel htmlFor={nameFieldId}>Name</InputLabel> */}
+              <TextField
+                type="text"
+                name="name"
+                id={nameFieldId}
+                label="Name"
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                fullWidth
+                variant="outlined"
+                helperText={<ErrorMessage name="name" component="p" />}
+              />
+            </Box>
 
-          <button type="submit" className={css.btnSave}>
-            <LiaSave className={css.saveIcon} />
-            Save contact
-          </button>
-        </div>
-      </Form>
+            <Box sx={{ marginBottom: 2 }}>
+              {/* <label htmlFor={numberFieldId}>Number</label> */}
+              <TextField
+                type="tel"
+                name="phoneNumber"
+                id={numberFieldId}
+                label="Phone Number"
+                value={values.phoneNumber}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                fullWidth
+                variant="outlined"
+                helperText={<ErrorMessage name="phoneNumber" component="p" />}
+              />
+            </Box>
+
+            <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
+              <Button
+                onClick={() => dispatch(setContactForEdit(null))}
+                color="error"
+                sx={{ display: "flex", alignItems: "center" }}
+              >
+                <MdOutlineCancel />
+                <Typography variant="span" sx={{ marginLeft: "5px" }}>
+                  Cancel
+                </Typography>
+              </Button>
+
+              <Button
+                type="submit"
+                color="success"
+                sx={{ display: "flex", alignItems: "center" }}
+              >
+                <LiaSave />
+                <Typography variant="span" sx={{ marginLeft: "5px" }}>
+                  Save contact
+                </Typography>
+              </Button>
+            </Box>
+          </Card>
+        </Form>
+      )}
     </Formik>
   );
 };

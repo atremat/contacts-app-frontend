@@ -1,12 +1,11 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
-import css from "./ContactForm.module.css";
 import { LuUserPlus } from "react-icons/lu";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import toast from "react-hot-toast";
-import { Box, Button, InputLabel, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 const contactSchema = Yup.object().shape({
   name: Yup.string()
@@ -62,11 +61,11 @@ const ContactForm = () => {
             }}
           >
             <Box>
-              <InputLabel htmlFor={nameFieldId}>Name</InputLabel>
               <TextField
                 type="text"
                 name="name"
                 id={nameFieldId}
+                label="Name"
                 value={values.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -78,11 +77,11 @@ const ContactForm = () => {
             </Box>
 
             <Box>
-              <InputLabel htmlFor={numberFieldId}>Number</InputLabel>
               <TextField
                 type="tel"
                 name="number"
                 id={numberFieldId}
+                label="Number"
                 value={values.number}
                 onChange={handleChange}
                 onBlur={handleBlur}
