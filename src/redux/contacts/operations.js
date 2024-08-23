@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = "https://contacts-app-mm7s.onrender.com";
+axios.defaults.baseURL = "https://contacts-app-backend-m1cm.onrender.com";
 
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",

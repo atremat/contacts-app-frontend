@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = "https://contacts-app-mm7s.onrender.com";
+axios.defaults.baseURL = "https://contacts-app-backend-m1cm.onrender.com";
 
 // Utility to add JWT
 const setAuthHeader = (token) => {
@@ -14,7 +14,7 @@ const clearAuthHeader = () => {
 };
 
 const api = axios.create({
-  baseURL: "https://contacts-app-mm7s.onrender.com",
+  baseURL: "https://contacts-app-backend-m1cm.onrender.com",
 
   withCredentials: true, // Дозволити передачу файлів cookie
 });
