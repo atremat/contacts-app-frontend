@@ -8,16 +8,3 @@
   padding: 10px;
   background-color: #fff;
 }
-
-.title {
-  text-align: center;
-}
-
-.question {
-  text-align: center;
-}
-
-.btnWrapper {
-  display: flex;
-  justify-content: space-around;
-}

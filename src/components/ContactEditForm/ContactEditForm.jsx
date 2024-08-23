@@ -46,83 +46,85 @@ const ContactEditForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      validationSchema={contactSchema}
-    >
-      {({ values, handleChange, handleBlur }) => (
-        <Form>
-          <Card
-            sx={{
-              transition: "transform 0.3s ease",
-              "&:hover": {
-                transform: "scale(1.03)",
-              },
-              width: 320,
-              marginTop: "20px",
-              padding: "15px 5px 5px",
-            }}
-          >
-            <Box sx={{ marginBottom: 4 }}>
-              {/* <InputLabel htmlFor={nameFieldId}>Name</InputLabel> */}
-              <TextField
-                type="text"
-                name="name"
-                id={nameFieldId}
-                label="Name"
-                value={values.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                fullWidth
-                variant="outlined"
-                helperText={<ErrorMessage name="name" component="p" />}
-              />
-            </Box>
+    <Box sx={{ mb: 2 }}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={contactSchema}
+      >
+        {({ values, handleChange, handleBlur }) => (
+          <Form>
+            <Card
+              sx={{
+                transition: "transform 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.03)",
+                },
+                width: 288,
+                marginTop: "20px",
+                padding: "15px 5px 5px",
+              }}
+            >
+              <Box sx={{ marginBottom: 4 }}>
+                {/* <InputLabel htmlFor={nameFieldId}>Name</InputLabel> */}
+                <TextField
+                  type="text"
+                  name="name"
+                  id={nameFieldId}
+                  label="Name"
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  fullWidth
+                  variant="outlined"
+                  helperText={<ErrorMessage name="name" component="p" />}
+                />
+              </Box>
 
-            <Box sx={{ marginBottom: 2 }}>
-              {/* <label htmlFor={numberFieldId}>Number</label> */}
-              <TextField
-                type="tel"
-                name="phoneNumber"
-                id={numberFieldId}
-                label="Phone Number"
-                value={values.phoneNumber}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                fullWidth
-                variant="outlined"
-                helperText={<ErrorMessage name="phoneNumber" component="p" />}
-              />
-            </Box>
+              <Box sx={{ marginBottom: 2 }}>
+                {/* <label htmlFor={numberFieldId}>Number</label> */}
+                <TextField
+                  type="tel"
+                  name="phoneNumber"
+                  id={numberFieldId}
+                  label="Phone Number"
+                  value={values.phoneNumber}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  fullWidth
+                  variant="outlined"
+                  helperText={<ErrorMessage name="phoneNumber" component="p" />}
+                />
+              </Box>
 
-            <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
-              <Button
-                onClick={() => dispatch(setContactForEdit(null))}
-                color="error"
-                sx={{ display: "flex", alignItems: "center" }}
-              >
-                <MdOutlineCancel />
-                <Typography variant="span" sx={{ marginLeft: "5px" }}>
-                  Cancel
-                </Typography>
-              </Button>
+              <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
+                <Button
+                  onClick={() => dispatch(setContactForEdit(null))}
+                  color="error"
+                  sx={{ display: "flex", alignItems: "center" }}
+                >
+                  <MdOutlineCancel />
+                  <Typography variant="span" sx={{ marginLeft: "5px" }}>
+                    Cancel
+                  </Typography>
+                </Button>
 
-              <Button
-                type="submit"
-                color="success"
-                sx={{ display: "flex", alignItems: "center" }}
-              >
-                <LiaSave />
-                <Typography variant="span" sx={{ marginLeft: "5px" }}>
-                  Save contact
-                </Typography>
-              </Button>
-            </Box>
-          </Card>
-        </Form>
-      )}
-    </Formik>
+                <Button
+                  type="submit"
+                  color="success"
+                  sx={{ display: "flex", alignItems: "center" }}
+                >
+                  <LiaSave />
+                  <Typography variant="span" sx={{ marginLeft: "5px" }}>
+                    Save contact
+                  </Typography>
+                </Button>
+              </Box>
+            </Card>
+          </Form>
+        )}
+      </Formik>
+    </Box>
   );
 };
 

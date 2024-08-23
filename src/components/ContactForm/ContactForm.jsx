@@ -45,66 +45,68 @@ const ContactForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      validationSchema={contactSchema}
-    >
-      {({ values, handleChange, handleBlur }) => (
-        <Form>
-          <Box
-            sx={{
-              width: 320,
-              display: "flex",
-              flexDirection: "column",
-              gap: 2,
-            }}
-          >
-            <Box>
-              <TextField
-                type="text"
-                name="name"
-                id={nameFieldId}
-                label="Name"
-                value={values.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                fullWidth
-                variant="outlined"
-                helperText={<ErrorMessage name="name" component="span" />}
-                // error={!!(<ErrorMessage name="name" />)}
-              />
-            </Box>
-
-            <Box>
-              <TextField
-                type="tel"
-                name="number"
-                id={numberFieldId}
-                label="Number"
-                value={values.number}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                fullWidth
-                variant="outlined"
-                helperText={<ErrorMessage name="number" component="span" />}
-                // error={!!(<ErrorMessage name="number" />)}
-              />
-            </Box>
-
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              startIcon={<LuUserPlus />}
+    <Box sx={{ marginBottom: 2 }}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={contactSchema}
+      >
+        {({ values, handleChange, handleBlur }) => (
+          <Form>
+            <Box
+              sx={{
+                width: 288,
+                display: "flex",
+                flexDirection: "column",
+                gap: 2,
+              }}
             >
-              {/* <LuUserPlus className={css.addIcon} /> */}
-              Add contact
-            </Button>
-          </Box>
-        </Form>
-      )}
-    </Formik>
+              <Box>
+                <TextField
+                  type="text"
+                  name="name"
+                  id={nameFieldId}
+                  label="Name"
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  fullWidth
+                  variant="outlined"
+                  helperText={<ErrorMessage name="name" component="span" />}
+                  // error={!!(<ErrorMessage name="name" />)}
+                />
+              </Box>
+
+              <Box>
+                <TextField
+                  type="tel"
+                  name="number"
+                  id={numberFieldId}
+                  label="Number"
+                  value={values.number}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  fullWidth
+                  variant="outlined"
+                  helperText={<ErrorMessage name="number" component="span" />}
+                  // error={!!(<ErrorMessage name="number" />)}
+                />
+              </Box>
+
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                startIcon={<LuUserPlus />}
+              >
+                {/* <LuUserPlus className={css.addIcon} /> */}
+                Add contact
+              </Button>
+            </Box>
+          </Form>
+        )}
+      </Formik>
+    </Box>
   );
 };
 

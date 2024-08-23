@@ -1,6 +1,7 @@
 import ReactModal from "react-modal";
 import Modal from "react-modal";
 import css from "./ModalConfirm.module.css";
+import { Box, Button, Typography } from "@mui/material";
 
 ReactModal.setAppElement("#root");
 
@@ -18,12 +19,21 @@ const ModalConfirm = ({ isOpen, onClose, onConfirm }) => {
         },
       }}
     >
-      <h2 className={css.title}>Confirmation</h2>
-      <p className={css.question}>Are you sure you want to delete?</p>
-      <div className={css.btnWrapper}>
-        <button onClick={onConfirm}>Confirm</button>
-        <button onClick={onClose}>Cancel</button>
-      </div>
+      <Typography variant="h3" sx={{ textAlign: "center" }}>
+        Confirmation
+      </Typography>
+
+      <Typography sx={{ textAlign: "center", mb: 2 }}>
+        Are you sure you want to delete?
+      </Typography>
+      <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+        <Button onClick={onConfirm} color="success">
+          Confirm
+        </Button>
+        <Button onClick={onClose} color="warning">
+          Cancel
+        </Button>
+      </Box>
     </Modal>
   );
 };

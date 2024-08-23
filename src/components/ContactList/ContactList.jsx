@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import Contact from "../Contact/Contact";
-import css from "./ContactList.module.css";
 import { selectFilteredContacts } from "../../redux/filters/selectors";
 import { useState } from "react";
 import ModalConfirm from "../ModalConfirm/ModalConfirm";
 import { deleteContact } from "../../redux/contacts/operations";
 import toast from "react-hot-toast";
+import { List } from "@mui/material";
 
 const ContactList = () => {
   const visibleContacts = useSelector(selectFilteredContacts);
@@ -37,7 +37,9 @@ const ContactList = () => {
 
   return (
     <>
-      <ul className={css.list}>
+      <List
+        sx={{ display: "flex", flexDirection: "column", gap: "20px", mb: 2 }}
+      >
         {visibleContacts.map((contact) => {
           return (
             <Contact
@@ -47,7 +49,7 @@ const ContactList = () => {
             />
           );
         })}
-      </ul>
+      </List>
       <ModalConfirm
         isOpen={isModalOpen}
         onClose={handleCloseModal}

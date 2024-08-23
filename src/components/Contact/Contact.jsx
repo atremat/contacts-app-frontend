@@ -1,4 +1,3 @@
-import css from "./Contact.module.css";
 import { useDispatch } from "react-redux";
 import { setContactForEdit } from "../../redux/contacts/slice";
 import {
@@ -8,10 +7,10 @@ import {
   CardHeader,
   Checkbox,
   IconButton,
+  ListItem,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { editContact } from "../../redux/contacts/operations";
 
@@ -55,8 +54,14 @@ const Contact = ({ contact, openModal }) => {
   }
 
   return (
-    <li className={css.listItem}>
-      <Card sx={{ width: 320 }}>
+    <ListItem
+      sx={{
+        padding: 0,
+        transition: "scale 0.3s ease",
+        "&:hover": { transform: "scale(1.03)" },
+      }}
+    >
+      <Card sx={{ width: 288 }}>
         <CardHeader
           avatar={
             <Avatar
@@ -91,7 +96,7 @@ const Contact = ({ contact, openModal }) => {
           </IconButton>
         </CardActions>
       </Card>
-    </li>
+    </ListItem>
   );
 };
 

@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import css from "./AuthNav.module.css";
 import clsx from "clsx";
+import { Box } from "@mui/material";
 
 export const AuthNav = () => {
   const buildLinkClass = ({ isActive }) => {
@@ -8,13 +9,13 @@ export const AuthNav = () => {
   };
 
   return (
-    <div className={css.wrapper}>
+    <Box sx={{ display: "flex", gap: "24px" }}>
       <NavLink className={buildLinkClass} to="/register">
         Register
       </NavLink>
       <NavLink className={buildLinkClass} to="/login">
         Log In
       </NavLink>
-    </div>
+    </Box>
   );
 };

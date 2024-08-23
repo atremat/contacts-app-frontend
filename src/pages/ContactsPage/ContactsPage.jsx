@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import DocumentTitle from "../../components/DocumentTitle/DocumentTitle";
 import ContactEditForm from "../../components/ContactEditForm/ContactEditForm";
 import { Box, Typography } from "@mui/material";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import ContactPhoneOutlinedIcon from "@mui/icons-material/ContactPhoneOutlined";
 
 const ContactsPage = () => {
   const isLoading = useSelector(selectLoading);
@@ -31,10 +31,16 @@ const ContactsPage = () => {
       <Box>
         <Typography
           component="h2"
-          sx={{ display: "flex", alignItems: "center", gap: 2 }}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 2,
+            justifyContent: "center",
+            marginBottom: 2,
+          }}
         >
-          <PersonAddIcon sx={{ width: 40, height: 40 }} />
-          <Typography component="span" variant="h3">
+          <ContactPhoneOutlinedIcon sx={{ width: 40, height: 40 }} />
+          <Typography component="span" variant="h4">
             Phonebook
           </Typography>
         </Typography>

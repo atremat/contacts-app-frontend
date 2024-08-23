@@ -3,7 +3,7 @@ import { changeFilter } from "../../redux/filters/slice";
 import { selectFilter } from "../../redux/filters/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { selectContacts } from "../../redux/contacts/selectors";
-import { Card, Input, InputLabel } from "@mui/material";
+import { Card, Input, InputLabel, Typography } from "@mui/material";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 
 const SearchBox = () => {
@@ -21,9 +21,9 @@ const SearchBox = () => {
     contacts.length > 0 && (
       <Card
         sx={{
-          width: 320,
-          marginTop: "20px",
-          padding: "5px",
+          width: 288,
+          padding: "10px 16px",
+          marginBottom: 2,
           transition: "transform 0.3s ease",
           "&:hover": {
             transform: "scale(1.03)",
@@ -35,7 +35,9 @@ const SearchBox = () => {
           sx={{ display: "flex", alignItems: "center" }}
         >
           <PersonSearchIcon sx={{ marginRight: "10px" }} />
-          Find contacts by name or number
+          <Typography component="span" fontSize="0.9rem">
+            Find contacts by name or number
+          </Typography>
         </InputLabel>
         <Input
           id={searchValueId}
