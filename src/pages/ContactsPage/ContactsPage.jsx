@@ -11,8 +11,7 @@ import { fetchContacts } from "../../redux/contacts/operations";
 import { useEffect } from "react";
 import DocumentTitle from "../../components/DocumentTitle/DocumentTitle";
 import ContactEditForm from "../../components/ContactEditForm/ContactEditForm";
-import { Box, Typography } from "@mui/material";
-import ContactPhoneOutlinedIcon from "@mui/icons-material/ContactPhoneOutlined";
+import { Box } from "@mui/material";
 
 const ContactsPage = () => {
   const isLoading = useSelector(selectLoading);
@@ -29,22 +28,6 @@ const ContactsPage = () => {
       <DocumentTitle>Contacts</DocumentTitle>
 
       <Box>
-        <Typography
-          component="h2"
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 2,
-            justifyContent: "center",
-            marginBottom: 2,
-          }}
-        >
-          <ContactPhoneOutlinedIcon sx={{ width: 40, height: 40 }} />
-          <Typography component="span" variant="h4">
-            Phonebook
-          </Typography>
-        </Typography>
-
         {isContactToEdit ? <ContactEditForm /> : <ContactForm />}
 
         <SearchBox />

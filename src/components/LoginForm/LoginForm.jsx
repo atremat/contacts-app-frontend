@@ -48,14 +48,20 @@ const LoginForm = () => {
   };
 
   return (
-    <>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={signSchema}
-      >
-        {({ handleChange, handleBlur, values }) => (
-          <Form style={{ marginTop: "20px" }}>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validationSchema={signSchema}
+    >
+      {({ handleChange, handleBlur, values }) => (
+        <Form>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mb: 2, width: 280 }}>
               <TextField
                 type="email"
@@ -111,10 +117,10 @@ const LoginForm = () => {
             <Button type="submit" variant="contained" color="primary">
               Log in
             </Button>
-          </Form>
-        )}
-      </Formik>
-    </>
+          </Box>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
