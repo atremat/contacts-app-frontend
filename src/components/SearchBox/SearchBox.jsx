@@ -23,7 +23,8 @@ const SearchBox = () => {
         sx={{
           width: 288,
           padding: "10px 16px",
-          marginBottom: 2,
+          margin: "8px auto",
+          mb: 2,
           transition: "transform 0.3s ease",
           "&:hover": {
             transform: "scale(1.03)",

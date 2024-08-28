@@ -12,6 +12,19 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import CssBaseline from "@mui/material/CssBaseline";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 375,
+      md: 768,
+      lg: 1024,
+      xl: 1440,
+    },
+  },
+});
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -20,7 +33,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <BrowserRouter>
           <HelmetProvider>
             <CssBaseline enableColorScheme>
-              <App />
+              <ThemeProvider theme={theme}>
+                <App />
+              </ThemeProvider>
             </CssBaseline>
           </HelmetProvider>
         </BrowserRouter>

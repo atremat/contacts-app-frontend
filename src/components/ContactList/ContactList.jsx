@@ -38,7 +38,12 @@ const ContactList = () => {
   return (
     <>
       <List
-        sx={{ display: "flex", flexDirection: "column", gap: "20px", mb: 2 }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+          mb: 2,
+        }}
       >
         {visibleContacts.map((contact) => {
           return (

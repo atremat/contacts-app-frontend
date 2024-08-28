@@ -56,6 +56,7 @@ const Contact = ({ contact, openModal }) => {
   return (
     <ListItem
       sx={{
+        justifyContent: "center",
         padding: 0,
         transition: "scale 0.3s ease",
         "&:hover": { transform: "scale(1.03)" },

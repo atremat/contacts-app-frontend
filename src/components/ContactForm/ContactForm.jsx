@@ -45,7 +45,7 @@ const ContactForm = () => {
   };
 
   return (
-    <Box sx={{ marginBottom: 2 }}>
+    <Box sx={{ mb: 2 }}>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -59,6 +59,7 @@ const ContactForm = () => {
                 display: "flex",
                 flexDirection: "column",
                 gap: 2,
+                margin: "0 auto",
               }}
             >
               <Box>
