@@ -55,7 +55,7 @@ const ContactForm = () => {
           <Form>
             <Box
               sx={{
-                width: 288,
+                width: { xs: 288, sm: 343, md: 514 },
                 display: "flex",
                 flexDirection: "column",
                 gap: 2,

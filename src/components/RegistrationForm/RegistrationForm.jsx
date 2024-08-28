@@ -66,7 +66,7 @@ const RegistrationForm = () => {
               alignItems: "center",
             }}
           >
-            <Box sx={{ mb: 2, width: 280 }}>
+            <Box sx={{ mb: 2, width: { xs: 288, sm: 343, md: 514 } }}>
               <TextField
                 type="text"
                 name="name"
@@ -92,7 +92,7 @@ const RegistrationForm = () => {
               />
             </Box>
 
-            <Box sx={{ mb: 2, width: 280 }}>
+            <Box sx={{ mb: 2, width: { xs: 288, sm: 343, md: 514 } }}>
               <TextField
                 type="email"
                 name="email"
@@ -118,7 +118,7 @@ const RegistrationForm = () => {
               />
             </Box>
 
-            <Box sx={{ mb: 2, width: 280 }}>
+            <Box sx={{ mb: 2, width: { xs: 288, sm: 343, md: 514 } }}>
               <TextField
                 type="password"
                 name="password"

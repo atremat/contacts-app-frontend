@@ -62,7 +62,7 @@ const LoginForm = () => {
               alignItems: "center",
             }}
           >
-            <Box sx={{ mb: 2, width: 280 }}>
+            <Box sx={{ mb: 2, width: { xs: 288, sm: 343, md: 514 } }}>
               <TextField
                 type="email"
                 name="email"
@@ -88,7 +88,7 @@ const LoginForm = () => {
               />
             </Box>
 
-            <Box sx={{ mb: 2, width: 280 }}>
+            <Box sx={{ mb: 2, width: { xs: 288, sm: 343, md: 514 } }}>
               <TextField
                 type="password"
                 name="password"

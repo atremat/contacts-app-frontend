@@ -60,7 +60,7 @@ const ContactEditForm = () => {
                 "&:hover": {
                   transform: "scale(1.03)",
                 },
-                width: 288,
+                width: { xs: 288, sm: 343, md: 514 },
                 marginTop: "20px",
                 padding: "15px 5px 5px",
               }}

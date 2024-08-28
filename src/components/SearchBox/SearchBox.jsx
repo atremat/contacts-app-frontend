@@ -21,7 +21,7 @@ const SearchBox = () => {
     contacts.length > 0 && (
       <Card
         sx={{
-          width: 288,
+          width: { xs: 288, sm: 343, md: 514 },
           padding: "10px 16px",
           margin: "8px auto",
           mb: 2,

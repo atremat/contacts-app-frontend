@@ -62,7 +62,7 @@ const Contact = ({ contact, openModal }) => {
         "&:hover": { transform: "scale(1.03)" },
       }}
     >
-      <Card sx={{ width: 288 }}>
+      <Card sx={{ width: { xs: 288, sm: 343, md: 514 } }}>
         <CardHeader
           avatar={
             <Avatar
