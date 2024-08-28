@@ -1,8 +1,6 @@
 import { useId } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { ErrorMessage } from "formik";
-import css from "./RegistrationForm.module.css";
 import { register } from "../../redux/auth/operations";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
@@ -10,6 +8,7 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import KeyIcon from "@mui/icons-material/Key";
+import ErrorTip from "../ErrorTip/ErrorTip";
 
 const RegistrationForm = () => {
   const nameFieldId = useId();
@@ -80,13 +79,7 @@ const RegistrationForm = () => {
                 value={values.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                helperText={
-                  <ErrorMessage
-                    name="name"
-                    component="p"
-                    className={css.error}
-                  />
-                }
+                helperText={<ErrorTip name="name" />}
                 sx={{ mt: 1 }}
                 fullWidth
               />
@@ -106,13 +99,7 @@ const RegistrationForm = () => {
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                helperText={
-                  <ErrorMessage
-                    name="email"
-                    component="p"
-                    className={css.error}
-                  />
-                }
+                helperText={<ErrorTip name="email" />}
                 sx={{ mt: 1 }}
                 fullWidth
               />
@@ -132,13 +119,7 @@ const RegistrationForm = () => {
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                helperText={
-                  <ErrorMessage
-                    name="password"
-                    component="p"
-                    className={css.error}
-                  />
-                }
+                helperText={<ErrorTip name="password" />}
                 fullWidth
                 sx={{ mt: 1 }}
               />

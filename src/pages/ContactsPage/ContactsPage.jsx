@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import DocumentTitle from "../../components/DocumentTitle/DocumentTitle";
 import ContactEditForm from "../../components/ContactEditForm/ContactEditForm";
 import { Box } from "@mui/material";
+import { Loader } from "../../components/Loader/Loader";
 
 const ContactsPage = () => {
   const isLoading = useSelector(selectLoading);
@@ -31,9 +32,9 @@ const ContactsPage = () => {
         {isContactToEdit ? <ContactEditForm /> : <ContactForm />}
 
         <SearchBox />
-        {isLoading && <p>Loading...</p>}
+
         {error && <p>{error}</p>}
-        <ContactList />
+        {isLoading ? <Loader /> : <ContactList />}
       </Box>
     </>
   );

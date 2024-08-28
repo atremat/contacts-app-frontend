@@ -58,8 +58,10 @@ const Contact = ({ contact, openModal }) => {
       sx={{
         justifyContent: "center",
         padding: 0,
-        transition: "scale 0.3s ease",
-        "&:hover": { transform: "scale(1.03)" },
+        transition: "transform 0.3s ease",
+        "&:hover": {
+          transform: "scale(1.03)",
+        },
       }}
     >
       <Card sx={{ width: { xs: 288, sm: 343, md: 514 } }}>

@@ -1,4 +1,4 @@
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
 import { LuUserPlus } from "react-icons/lu";
@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import toast from "react-hot-toast";
 import { Box, Button, TextField } from "@mui/material";
+import ErrorTip from "../ErrorTip/ErrorTip";
 
 const contactSchema = Yup.object().shape({
   name: Yup.string()
@@ -73,8 +74,7 @@ const ContactForm = () => {
                   onBlur={handleBlur}
                   fullWidth
                   variant="outlined"
-                  helperText={<ErrorMessage name="name" component="span" />}
-                  // error={!!(<ErrorMessage name="name" />)}
+                  helperText={<ErrorTip name="name" />}
                 />
               </Box>
 
@@ -89,8 +89,7 @@ const ContactForm = () => {
                   onBlur={handleBlur}
                   fullWidth
                   variant="outlined"
-                  helperText={<ErrorMessage name="number" component="span" />}
-                  // error={!!(<ErrorMessage name="number" />)}
+                  helperText={<ErrorTip name="number" />}
                 />
               </Box>
 
@@ -100,7 +99,6 @@ const ContactForm = () => {
                 color="primary"
                 startIcon={<LuUserPlus />}
               >
-                {/* <LuUserPlus className={css.addIcon} /> */}
                 Add contact
               </Button>
             </Box>

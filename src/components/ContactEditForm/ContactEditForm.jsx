@@ -1,4 +1,4 @@
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
 import { LiaSave } from "react-icons/lia";
@@ -8,6 +8,7 @@ import { selectContactForEdit } from "../../redux/contacts/selectors";
 import { setContactForEdit } from "../../redux/contacts/slice";
 import { editContact } from "../../redux/contacts/operations";
 import { Box, Button, Card, TextField, Typography } from "@mui/material";
+import ErrorTip from "../ErrorTip/ErrorTip";
 
 const contactSchema = Yup.object().shape({
   name: Yup.string()
@@ -61,12 +62,12 @@ const ContactEditForm = () => {
                   transform: "scale(1.03)",
                 },
                 width: { xs: 288, sm: 343, md: 514 },
-                marginTop: "20px",
+                margin: "16px auto",
+                marginTop: 2,
                 padding: "15px 5px 5px",
               }}
             >
               <Box sx={{ marginBottom: 4 }}>
-                {/* <InputLabel htmlFor={nameFieldId}>Name</InputLabel> */}
                 <TextField
                   type="text"
                   name="name"
@@ -77,12 +78,11 @@ const ContactEditForm = () => {
                   onBlur={handleBlur}
                   fullWidth
                   variant="outlined"
-                  helperText={<ErrorMessage name="name" component="p" />}
+                  helperText={<ErrorTip name="name" />}
                 />
               </Box>
 
               <Box sx={{ marginBottom: 2 }}>
-                {/* <label htmlFor={numberFieldId}>Number</label> */}
                 <TextField
                   type="tel"
                   name="phoneNumber"
@@ -93,7 +93,7 @@ const ContactEditForm = () => {
                   onBlur={handleBlur}
                   fullWidth
                   variant="outlined"
-                  helperText={<ErrorMessage name="phoneNumber" component="p" />}
+                  helperText={<ErrorTip name="phoneNumber" />}
                 />
               </Box>
 

@@ -1,14 +1,13 @@
 import { useId } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { ErrorMessage } from "formik";
-import css from "./LoginForm.module.css";
 import { login } from "../../redux/auth/operations";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
 import KeyIcon from "@mui/icons-material/Key";
+import ErrorTip from "../ErrorTip/ErrorTip";
 
 const LoginForm = () => {
   const emailFieldId = useId();
@@ -76,13 +75,7 @@ const LoginForm = () => {
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                helperText={
-                  <ErrorMessage
-                    name="email"
-                    component="p"
-                    className={css.error}
-                  />
-                }
+                helperText={<ErrorTip name="email" />}
                 sx={{ mt: 1 }}
                 fullWidth
               />
@@ -102,13 +95,7 @@ const LoginForm = () => {
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                helperText={
-                  <ErrorMessage
-                    name="password"
-                    component="p"
-                    className={css.error}
-                  />
-                }
+                helperText={<ErrorTip name="password" />}
                 fullWidth
                 sx={{ mt: 1 }}
               />
