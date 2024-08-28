@@ -5,6 +5,7 @@ import {
   deleteContact,
   editContact,
 } from "./operations";
+import { logOut } from "../auth/operations";
 
 const contactsInitialState = {
   items: [],
@@ -64,7 +65,9 @@ const contactsSlice = createSlice({
           return item._id === action.payload._id ? { ...action.payload } : item;
         });
       })
-      .addCase(editContact.rejected, isRejected);
+      .addCase(editContact.rejected, isRejected)
+      //logout
+      .addCase(logOut.fulfilled, () => contactsInitialState);
   },
 });
 
