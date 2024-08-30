@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { setContactForEdit } from "../../redux/contacts/slice";
 import {
   Avatar,
+  Box,
   Card,
   CardActions,
   CardHeader,
@@ -13,9 +14,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { editContact } from "../../redux/contacts/operations";
+import ContactType from "../ContactType/ContactType";
 
 const Contact = ({ contact, openModal }) => {
-  const { _id, name, phoneNumber, isFavourite } = contact;
+  const { _id, name, phoneNumber, isFavourite, contactType } = contact;
   const dispatch = useDispatch();
 
   const handleEdit = () => {
@@ -78,25 +80,44 @@ const Contact = ({ contact, openModal }) => {
           subheader={phoneNumber}
         />
 
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <Checkbox
-              checked={isFavourite ?? false}
-              onChange={() => {
-                dispatch(editContact({ _id: _id, isFavourite: !isFavourite }));
-              }}
-              inputProps={{ "aria-label": "controlled" }}
-              icon={<FavoriteBorder />}
-              checkedIcon={<Favorite />}
-            />
-          </IconButton>
-          <IconButton aria-label="edit" onClick={handleEdit}>
-            <EditIcon />
-          </IconButton>
+        <CardActions
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            justifyContent: { xs: "normal", md: "space-between" },
+            alignItems: { xs: "flex-start", md: "normal" },
+            gap: { xs: 2, md: 0 },
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              gap: 1,
+            }}
+          >
+            <IconButton aria-label="add to favorites">
+              <Checkbox
+                checked={isFavourite ?? false}
+                onChange={() => {
+                  dispatch(
+                    editContact({ _id: _id, isFavourite: !isFavourite })
+                  );
+                }}
+                inputProps={{ "aria-label": "controlled" }}
+                icon={<FavoriteBorder />}
+                checkedIcon={<Favorite />}
+              />
+            </IconButton>
+            <IconButton aria-label="edit" onClick={handleEdit}>
+              <EditIcon />
+            </IconButton>
 
-          <IconButton aria-label="delete" onClick={() => openModal(_id)}>
-            <DeleteIcon />
-          </IconButton>
+            <IconButton aria-label="delete" onClick={() => openModal(_id)}>
+              <DeleteIcon />
+            </IconButton>
+          </Box>
+
+          <ContactType contactType={contactType} _id={_id} />
         </CardActions>
       </Card>
     </ListItem>
