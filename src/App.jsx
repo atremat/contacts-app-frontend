@@ -26,8 +26,8 @@ const App = () => {
   useEffect(() => {
     dispatch(refreshUser())
       .unwrap()
-      .then(() => toast.success("Login success!"))
-      .catch(() => toast.error("Session not found!"));
+      .then(() => toast.success("Login success!"));
+    // .catch(() => toast.error("Session not found!"));
   }, [dispatch]);
 
   return isRefreshing ? (

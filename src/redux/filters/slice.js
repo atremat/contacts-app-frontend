@@ -3,6 +3,7 @@ import { logOut } from "../auth/operations";
 
 const filterInitialState = {
   name: "",
+  viewMode: "all",
 };
 
 const filtersSlice = createSlice({
@@ -12,6 +13,9 @@ const filtersSlice = createSlice({
     changeFilter(state, action) {
       state.name = action.payload;
     },
+    changeViewMode(state, action) {
+      state.viewMode = action.payload;
+    },
 
     extraReducers: (builder) => {
       builder.addCase(logOut.fulfilled, () => filterInitialState);
@@ -19,5 +23,5 @@ const filtersSlice = createSlice({
   },
 });
 
-export const { changeFilter } = filtersSlice.actions;
+export const { changeFilter, changeViewMode } = filtersSlice.actions;
 export const filtersReducer = filtersSlice.reducer;

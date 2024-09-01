@@ -13,6 +13,8 @@ import DocumentTitle from "../../components/DocumentTitle/DocumentTitle";
 import ContactEditForm from "../../components/ContactEditForm/ContactEditForm";
 import { Box } from "@mui/material";
 import { Loader } from "../../components/Loader/Loader";
+import { SideBar } from "../../components/SideBar/SideBar";
+import toast from "react-hot-toast";
 
 const ContactsPage = () => {
   const isLoading = useSelector(selectLoading);
@@ -25,18 +27,20 @@ const ContactsPage = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <Box sx={{ display: "flex", justifyContent: "center", gap: 4 }}>
       <DocumentTitle>Contacts</DocumentTitle>
 
-      <Box>
+      <SideBar />
+
+      <Box component="main" sx={{ padding: 2 }}>
         {isContactToEdit ? <ContactEditForm /> : <ContactForm />}
 
         <SearchBox />
 
-        {error && <p>{error}</p>}
+        {error && toast.error({ error })}
         {isLoading ? <Loader /> : <ContactList />}
       </Box>
-    </>
+    </Box>
   );
 };
 
