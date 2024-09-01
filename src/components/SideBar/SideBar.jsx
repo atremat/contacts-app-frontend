@@ -9,18 +9,29 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  selectContactType,
   selectFilteredContacts,
   selectViewMode,
 } from "../../redux/filters/selectors";
-import { changeViewMode } from "../../redux/filters/slice";
+import { changeContactType, changeViewMode } from "../../redux/filters/slice";
+import { useId } from "react";
 
 export const SideBar = () => {
   const visibleContacts = useSelector(selectFilteredContacts);
   const viewMode = useSelector(selectViewMode);
+  const contactType = useSelector(selectContactType);
+
   const dispatch = useDispatch();
 
-  const handleChange = (e) => {
+  const vievModeId = useId();
+  const contactTypeId = useId();
+
+  const handleChangeVievMode = (e) => {
     dispatch(changeViewMode(e.target.value));
+  };
+
+  const handleCategoryFilter = (e) => {
+    dispatch(changeContactType(e.target.value));
   };
 
   return (
@@ -35,24 +46,47 @@ export const SideBar = () => {
       }}
     >
       <Typography component="p">
-        {`Found ${visibleContacts.length} contacts`}
+        {`Found ${visibleContacts.length} ${
+          visibleContacts.length === 1 ? "contact" : "contacts"
+        }`}
       </Typography>
 
       <FormControl>
-        <FormLabel id="demo-controlled-radio-buttons-group">Show</FormLabel>
-        <RadioGroup
-          aria-labelledby="demo-controlled-radio-buttons-group"
-          name="controlled-radio-buttons-group"
-          value={viewMode}
-          onChange={handleChange}
-        >
-          <FormControlLabel value="all" control={<Radio />} label="All" />
-          <FormControlLabel
-            value="favorites"
-            control={<Radio />}
-            label="Favorites"
-          />
-        </RadioGroup>
+        <Box sx={{ mb: 2 }}>
+          <FormLabel id={vievModeId}>Show</FormLabel>
+          <RadioGroup
+            aria-labelledby={vievModeId}
+            name="viewModeGroup"
+            value={viewMode}
+            onChange={handleChangeVievMode}
+          >
+            <FormControlLabel value="all" control={<Radio />} label="All" />
+            <FormControlLabel
+              value="favorites"
+              control={<Radio />}
+              label="Favorites"
+            />
+          </RadioGroup>
+        </Box>
+
+        <Box sx={{ mb: 2 }}>
+          <FormLabel id={contactTypeId}>Group</FormLabel>
+          <RadioGroup
+            aria-labelledby={contactTypeId}
+            name="categoryFilterGroup"
+            value={contactType}
+            onChange={handleCategoryFilter}
+          >
+            <FormControlLabel value="all" control={<Radio />} label="All" />
+            <FormControlLabel
+              value="personal"
+              control={<Radio />}
+              label="Personal"
+            />
+            <FormControlLabel value="work" control={<Radio />} label="Work" />
+            <FormControlLabel value="home" control={<Radio />} label="Home" />
+          </RadioGroup>
+        </Box>
       </FormControl>
     </Box>
   );

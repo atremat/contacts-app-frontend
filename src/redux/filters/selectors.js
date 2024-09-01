@@ -5,15 +5,18 @@ export const selectFilter = (state) => state.filters.name;
 
 export const selectViewMode = (state) => state.filters.viewMode;
 
+export const selectContactType = (state) => state.filters.contactType;
+
 export const selectFilteredContacts = createSelector(
-  [selectContacts, selectFilter, selectViewMode],
-  (contacts, valueFilter, valueViewMode) => {
+  [selectContacts, selectFilter, selectViewMode, selectContactType],
+  (contacts, valueFilter, valueViewMode, valueContactType) => {
     const visibleContacts = contacts.filter(
-      ({ name, phoneNumber, isFavourite }) => {
+      ({ name, phoneNumber, isFavourite, contactType }) => {
         return (
           (name.toLowerCase().includes(valueFilter.trim().toLowerCase()) ||
             phoneNumber.includes(valueFilter.trim())) &&
-          isFavourite === (valueViewMode === "favorites")
+          isFavourite === (valueViewMode === "favorites") &&
+          (valueContactType === contactType || valueContactType === "all")
         );
       }
     );

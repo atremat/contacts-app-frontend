@@ -4,6 +4,7 @@ import { logOut } from "../auth/operations";
 const filterInitialState = {
   name: "",
   viewMode: "all",
+  contactType: "all",
 };
 
 const filtersSlice = createSlice({
@@ -16,12 +17,16 @@ const filtersSlice = createSlice({
     changeViewMode(state, action) {
       state.viewMode = action.payload;
     },
-
-    extraReducers: (builder) => {
-      builder.addCase(logOut.fulfilled, () => filterInitialState);
+    changeContactType(state, action) {
+      state.contactType = action.payload;
     },
+  },
+
+  extraReducers: (builder) => {
+    builder.addCase(logOut.fulfilled, () => filterInitialState);
   },
 });
 
-export const { changeFilter, changeViewMode } = filtersSlice.actions;
+export const { changeFilter, changeViewMode, changeContactType } =
+  filtersSlice.actions;
 export const filtersReducer = filtersSlice.reducer;
