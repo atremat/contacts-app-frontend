@@ -1,4 +1,3 @@
-import ContactForm from "../../components/ContactForm/ContactForm";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import ContactList from "../../components/ContactList/ContactList";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,7 +32,7 @@ const ContactsPage = () => {
       <SideBar />
 
       <Box component="main" sx={{ padding: 2 }}>
-        {isContactToEdit ? <ContactEditForm /> : <ContactForm />}
+        {isContactToEdit && <ContactEditForm />}
 
         <SearchBox />
 

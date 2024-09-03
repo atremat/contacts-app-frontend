@@ -10,7 +10,8 @@ import { Layout } from "./components/Layout/Layout";
 import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import toast, { Toaster } from "react-hot-toast";
-import { CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
+import AddContactPage from "./pages/AddContactPage/AddContactPage";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const RegistrationPage = lazy(() =>
@@ -31,10 +32,20 @@ const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <div>
-      <p>In process. It can take a minute...</p>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+        height: "100vh",
+      }}
+    >
+      <Typography variant="p" component="p">
+        In process. It can take a minute...
+      </Typography>
       <CircularProgress />
-    </div>
+    </Box>
   ) : (
     <Layout>
       <Routes>
@@ -58,6 +69,12 @@ const App = () => {
           path="/contacts"
           element={
             <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+          }
+        />
+        <Route
+          path="add-contact"
+          element={
+            <PrivateRoute redirectTo="/login" component={<AddContactPage />} />
           }
         />
       </Routes>
