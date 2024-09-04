@@ -56,7 +56,6 @@ const ContactForm = () => {
   const selectId = useId();
   const navigate = useNavigate();
 
-  const [, setAvatarUrl] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleSubmit = (values, actions) => {
@@ -65,7 +64,7 @@ const ContactForm = () => {
       formData.append(key, values[key]);
     });
     if (selectedFile) {
-      formData.append("photo", selectedFile); // Додавання файлу до formData
+      formData.append("photo", selectedFile);
     }
 
     dispatch(addContact(formData))
@@ -80,7 +79,6 @@ const ContactForm = () => {
   const handlePhotoChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setAvatarUrl(URL.createObjectURL(file));
       setSelectedFile(file);
     }
   };

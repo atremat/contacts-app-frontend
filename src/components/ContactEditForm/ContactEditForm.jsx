@@ -1,5 +1,5 @@
 import { Formik, Form } from "formik";
-import { useId } from "react";
+import { useId, useState } from "react";
 import * as Yup from "yup";
 import { LiaSave } from "react-icons/lia";
 import { MdOutlineCancel } from "react-icons/md";
@@ -7,8 +7,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectContactForEdit } from "../../redux/contacts/selectors";
 import { setContactForEdit } from "../../redux/contacts/slice";
 import { editContact } from "../../redux/contacts/operations";
-import { Box, Button, Card, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
 import ErrorTip from "../ErrorTip/ErrorTip";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { styled } from "@mui/material/styles";
 
 const contactSchema = Yup.object().shape({
   name: Yup.string()
@@ -25,6 +36,8 @@ const contactSchema = Yup.object().shape({
 const ContactEditForm = () => {
   const nameFieldId = useId();
   const numberFieldId = useId();
+  const selectId = useId();
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const contactToEdit = useSelector(selectContactForEdit);
   const dispatch = useDispatch();
@@ -32,18 +45,43 @@ const ContactEditForm = () => {
   const initialValues = {
     name: contactToEdit.name,
     phoneNumber: contactToEdit.phoneNumber,
+    contactType: contactToEdit.contactType,
   };
 
   const handleSubmit = (values, actions) => {
-    const editedContact = {
-      _id: contactToEdit._id,
-      name: values.name.trim(),
-      phoneNumber: values.phoneNumber.trim(),
-    };
+    const formData = new FormData();
+    formData.append("_id", contactToEdit._id);
 
-    dispatch(editContact(editedContact));
+    Object.keys(values).forEach((key) => {
+      formData.append(key, values[key]);
+    });
+
+    if (selectedFile) {
+      formData.append("photo", selectedFile);
+    }
+
+    dispatch(editContact(formData));
     dispatch(setContactForEdit(null));
     actions.resetForm();
+  };
+
+  const VisuallyHiddenInput = styled("input")({
+    clip: "rect(0 0 0 0)",
+    clipPath: "inset(50%)",
+    height: 1,
+    overflow: "hidden",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    whiteSpace: "nowrap",
+    width: 1,
+  });
+
+  const handlePhotoChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+    }
   };
 
   return (
@@ -67,7 +105,7 @@ const ContactEditForm = () => {
                 padding: "15px 5px 5px",
               }}
             >
-              <Box sx={{ marginBottom: 4 }}>
+              <Box sx={{ mb: 4 }}>
                 <TextField
                   type="text"
                   name="name"
@@ -82,7 +120,7 @@ const ContactEditForm = () => {
                 />
               </Box>
 
-              <Box sx={{ marginBottom: 2 }}>
+              <Box sx={{ mb: 2 }}>
                 <TextField
                   type="tel"
                   name="phoneNumber"
@@ -95,6 +133,40 @@ const ContactEditForm = () => {
                   variant="outlined"
                   helperText={<ErrorTip name="phoneNumber" />}
                 />
+              </Box>
+
+              <Box sx={{ mb: 2 }}>
+                <InputLabel id={selectId}>Group</InputLabel>
+                <Select
+                  labelId={selectId}
+                  id="contactType"
+                  name="contactType"
+                  label="Contact type"
+                  value={values.contactType}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  sx={{ width: "200px" }}
+                >
+                  <MenuItem value="personal">Personal</MenuItem>
+                  <MenuItem value="work">Work</MenuItem>
+                  <MenuItem value="home">Home</MenuItem>
+                </Select>
+              </Box>
+
+              <Box sx={{ mb: 2 }}>
+                <Button
+                  component="label"
+                  role={undefined}
+                  variant="contained"
+                  tabIndex={-1}
+                  startIcon={<CloudUploadIcon />}
+                >
+                  Upload files
+                  <VisuallyHiddenInput
+                    type="file"
+                    onChange={handlePhotoChange}
+                  />
+                </Button>
               </Box>
 
               <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>

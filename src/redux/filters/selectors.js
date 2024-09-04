@@ -15,7 +15,7 @@ export const selectFilteredContacts = createSelector(
         return (
           (name.toLowerCase().includes(valueFilter.trim().toLowerCase()) ||
             phoneNumber.includes(valueFilter.trim())) &&
-          isFavourite === (valueViewMode === "favorites") &&
+          (valueViewMode !== "favorites" || isFavourite) &&
           (valueContactType === contactType || valueContactType === "all")
         );
       }

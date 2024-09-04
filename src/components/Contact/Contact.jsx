@@ -17,18 +17,26 @@ import { editContact } from "../../redux/contacts/operations";
 import ContactType from "../ContactType/ContactType";
 
 const Contact = ({ contact, openModal }) => {
-  const { _id, name, phoneNumber, isFavourite, contactType } = contact;
+  const { _id, name, phoneNumber, isFavourite, contactType, photo } = contact;
   const dispatch = useDispatch();
 
   const handleEdit = () => {
-    dispatch(setContactForEdit({ _id, name, phoneNumber }));
+    dispatch(
+      setContactForEdit({
+        _id,
+        name,
+        phoneNumber,
+        isFavourite,
+        contactType,
+        photo,
+      })
+    );
   };
 
   function stringToColor(string) {
     let hash = 0;
     let i;
 
-    /* eslint-disable no-bitwise */
     for (i = 0; i < string.length; i += 1) {
       hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
@@ -55,6 +63,14 @@ const Contact = ({ contact, openModal }) => {
     };
   }
 
+  const handleFavoriteClick = () => {
+    const formData = new FormData();
+    formData.append("_id", contact._id);
+    formData.append("isFavourite", !isFavourite);
+
+    dispatch(editContact(formData));
+  };
+
   return (
     <ListItem
       sx={{
@@ -71,7 +87,7 @@ const Contact = ({ contact, openModal }) => {
           avatar={
             <Avatar
               {...stringAvatar(name)}
-              //! src={contact.avatar} //доробити бек, і доати до фронту
+              src={contact.photo}
               alt={name}
               aria-label="contact-item"
             />
@@ -98,11 +114,7 @@ const Contact = ({ contact, openModal }) => {
             <IconButton aria-label="add to favorites">
               <Checkbox
                 checked={isFavourite ?? false}
-                onChange={() => {
-                  dispatch(
-                    editContact({ _id: _id, isFavourite: !isFavourite })
-                  );
-                }}
+                onChange={handleFavoriteClick}
                 inputProps={{ "aria-label": "controlled" }}
                 icon={<FavoriteBorder />}
                 checkedIcon={<Favorite />}

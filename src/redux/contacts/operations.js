@@ -71,14 +71,18 @@ export const editContact = createAsyncThunk(
   "contacts/editContact",
   async (contact, thunkAPI) => {
     try {
-      const validContact = { ...contact };
-      delete validContact._id;
+      //making a copy of FormData object without _id
+      const validContact = new FormData();
+
+      for (let [key, value] of contact.entries()) {
+        if (key !== "_id") validContact.append(key, value);
+      }
 
       const state = thunkAPI.getState();
       const accessToken = state.auth.token;
       const response = await axios.patch(
-        `/contacts/${contact._id}`,
-        { ...validContact },
+        `/contacts/${contact.get("_id")}`,
+        validContact,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
