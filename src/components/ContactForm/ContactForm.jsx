@@ -23,7 +23,7 @@ const contactSchema = Yup.object().shape({
     .min(3, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  number: Yup.string()
+  phoneNumber: Yup.string()
     .matches(/^\+?[ ()0-9-]+$/, "Invalid phone number")
     .min(3, "Too Short!")
     .max(50, "Too Long!")
@@ -32,7 +32,7 @@ const contactSchema = Yup.object().shape({
 
 const initialValues = {
   name: "",
-  number: "",
+  phoneNumber: "",
   contactType: "personal",
 };
 
@@ -56,17 +56,10 @@ const ContactForm = () => {
   const selectId = useId();
   const navigate = useNavigate();
 
-  const [avatarUrl, setAvatarUrl] = useState(null);
+  const [, setAvatarUrl] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleSubmit = (values, actions) => {
-    // const newContact = {
-    //   name: values.name.trim(),
-    //   phoneNumber: values.number.trim(),
-    //   contactType: values.contactType,
-    //   photo: values.photo,
-    // };
-
     const formData = new FormData();
     Object.keys(values).forEach((key) => {
       formData.append(key, values[key]);
@@ -75,15 +68,13 @@ const ContactForm = () => {
       formData.append("photo", selectedFile); // Додавання файлу до formData
     }
 
-    console.log(formData);
+    dispatch(addContact(formData))
+      .unwrap()
+      .then(() => toast.success("Contact saved."))
+      .catch(() => toast.error("Error occurred when saving contact."));
 
-    // dispatch(addContact(newContact))
-    //   .unwrap()
-    //   .then(() => toast.success("Contact saved."))
-    //   .catch(() => toast.error("Error occurred when saving contact."));
-
-    // actions.resetForm();
-    // navigate("/contacts");
+    actions.resetForm();
+    navigate("/contacts");
   };
 
   const handlePhotoChange = (event) => {
@@ -130,15 +121,15 @@ const ContactForm = () => {
               <Box>
                 <TextField
                   type="tel"
-                  name="number"
+                  name="phoneNumber"
                   id={numberFieldId}
                   label="Number"
-                  value={values.number}
+                  value={values.phoneNumber}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   fullWidth
                   variant="outlined"
-                  helperText={<ErrorTip name="number" />}
+                  helperText={<ErrorTip name="phoneNumber" />}
                 />
               </Box>
 

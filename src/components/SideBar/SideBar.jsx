@@ -42,7 +42,6 @@ export const SideBar = () => {
         flexDirection: { md: "column" },
         gap: { md: 2 },
         padding: 2,
-        outline: "1px solid red",
       }}
     >
       <Typography component="p">
