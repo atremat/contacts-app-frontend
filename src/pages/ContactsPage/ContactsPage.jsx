@@ -14,6 +14,7 @@ import { Box } from "@mui/material";
 import { Loader } from "../../components/Loader/Loader";
 import { SideBar } from "../../components/SideBar/SideBar";
 import toast from "react-hot-toast";
+import { FilterMobile } from "../../components/FilterMobile/FilterMobile";
 
 const ContactsPage = () => {
   const isLoading = useSelector(selectLoading);
@@ -32,6 +33,7 @@ const ContactsPage = () => {
       <SideBar />
 
       <Box component="main" sx={{ padding: 2 }}>
+        <FilterMobile />
         {isContactToEdit && <ContactEditForm />}
 
         <SearchBox />
