@@ -6,6 +6,7 @@ import ModalConfirm from "../ModalConfirm/ModalConfirm";
 import { deleteContact } from "../../redux/contacts/operations";
 import toast from "react-hot-toast";
 import { List } from "@mui/material";
+import Pagination from "../Pagination/Pagination";
 
 const ContactList = () => {
   const visibleContacts = useSelector(selectFilteredContacts);
@@ -55,6 +56,9 @@ const ContactList = () => {
           );
         })}
       </List>
+
+      <Pagination />
+
       <ModalConfirm
         isOpen={isModalOpen}
         onClose={handleCloseModal}

@@ -4,7 +4,7 @@ import ContactForm from "../../components/ContactForm/ContactForm";
 const AddContactPage = () => {
   return (
     <>
-      <DocumentTitle>Home</DocumentTitle>
+      <DocumentTitle>Add contact</DocumentTitle>
       <ContactForm />
     </>
   );

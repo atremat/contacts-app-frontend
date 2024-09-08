@@ -5,7 +5,7 @@ axios.defaults.baseURL = "https://contacts-app-backend-m1cm.onrender.com";
 
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
-  async (_, thunkAPI) => {
+  async (queryParams, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
       const accessToken = state.auth.token;
@@ -14,6 +14,13 @@ export const fetchContacts = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
+        // params: {
+        //   page: queryParams.page,
+        //   perPage: queryParams.perPage,
+        //   sortOrder: queryParams.sortOrder,
+        //   sortBy: queryParams.sortBy,
+        //   filter: JSON.stringify(queryParams.filter || {}),
+        // },
       });
 
       return response.data.data.data;

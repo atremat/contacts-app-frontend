@@ -12,6 +12,11 @@ const contactsInitialState = {
   loading: false,
   error: null,
   contactForEdit: null,
+  page: 1,
+  perPage: 10,
+  sortOrder: "asc",
+  sortBy: "_id",
+  filter: {},
 };
 
 const isPending = (state) => {
@@ -31,6 +36,12 @@ const contactsSlice = createSlice({
     //save {id,name,number}, which we have to edit
     setContactForEdit: (state, action) => {
       state.contactForEdit = action.payload;
+    },
+    setPage: (state, action) => {
+      state.page = action.payload;
+    },
+    setPerPage: (state, action) => {
+      state.perPage = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -73,4 +84,4 @@ const contactsSlice = createSlice({
 
 export const contactsReducer = contactsSlice.reducer;
 
-export const { setContactForEdit } = contactsSlice.actions;
+export const { setContactForEdit, setPage, setPerPage } = contactsSlice.actions;
