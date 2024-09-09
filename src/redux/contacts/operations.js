@@ -14,16 +14,16 @@ export const fetchContacts = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-        // params: {
-        //   page: queryParams.page,
-        //   perPage: queryParams.perPage,
-        //   sortOrder: queryParams.sortOrder,
-        //   sortBy: queryParams.sortBy,
-        //   filter: JSON.stringify(queryParams.filter || {}),
-        // },
+        params: {
+          page: queryParams.page || 1,
+          perPage: queryParams.perPage || 10,
+          sortBy: queryParams.sortBy || "_id",
+          sortOrder: queryParams.sortOrder || "asc",
+          filter: JSON.stringify(queryParams.filter || {}),
+        },
       });
 
-      return response.data.data.data;
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -67,7 +67,7 @@ export const deleteContact = createAsyncThunk(
         },
       });
 
-      return response.data.data.data;
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -1,6 +1,10 @@
 import TablePagination from "@mui/material/TablePagination";
 import { useDispatch, useSelector } from "react-redux";
-import { selectPage, selectPerPage } from "../../redux/contacts/selectors";
+import {
+  selectPage,
+  selectPerPage,
+  selectTotalItems,
+} from "../../redux/contacts/selectors";
 import { setPage, setPerPage } from "../../redux/contacts/slice";
 
 export default function Pagination() {
@@ -8,10 +12,11 @@ export default function Pagination() {
   // const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const page = useSelector(selectPage);
   const rowsPerPage = useSelector(selectPerPage);
+  const totalItems = useSelector(selectTotalItems);
   const dispatch = useDispatch();
 
   const handleChangePage = (event, newPage) => {
-    dispatch(setPage(newPage));
+    dispatch(setPage(newPage + 1));
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -19,11 +24,11 @@ export default function Pagination() {
     dispatch(setPage(1));
   };
 
-  return (
+  return totalItems > 10 ? (
     <TablePagination
       component="div"
-      count={100}
-      page={page}
+      count={totalItems}
+      page={page - 1}
       onPageChange={handleChangePage}
       rowsPerPage={rowsPerPage}
       onRowsPerPageChange={handleChangeRowsPerPage}
@@ -32,5 +37,7 @@ export default function Pagination() {
         justifyContent: "center",
       }}
     />
+  ) : (
+    <></>
   );
 }

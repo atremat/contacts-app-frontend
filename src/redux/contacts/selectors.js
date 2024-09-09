@@ -6,4 +6,5 @@ export const selectPage = (state) => state.contacts.page;
 export const selectPerPage = (state) => state.contacts.perPage;
 export const selectSortOrder = (state) => state.contacts.sortOrder;
 export const selectSortBy = (state) => state.contacts.sortBy;
+export const selectTotalItems = (state) => state.contacts.totalItems;
 // export const selectFilter = state => state.contacts.filter;

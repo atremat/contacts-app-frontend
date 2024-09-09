@@ -16,6 +16,7 @@ const contactsInitialState = {
   perPage: 10,
   sortOrder: "asc",
   sortBy: "_id",
+  totalItems: 1,
   filter: {},
 };
 
@@ -50,7 +51,8 @@ const contactsSlice = createSlice({
       .addCase(fetchContacts.pending, isPending)
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
+        state.items = action.payload.data;
+        state.totalItems = action.payload.totalItems;
       })
       .addCase(fetchContacts.rejected, isRejected)
       //add contact
@@ -58,13 +60,15 @@ const contactsSlice = createSlice({
       .addCase(addContact.fulfilled, (state, action) => {
         state.loading = false;
         state.items = [...state.items, action.payload];
+        state.totalItems = state.totalItems + 1;
       })
       .addCase(addContact.rejected, isRejected)
       //delete contact
       .addCase(deleteContact.pending, isPending)
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
+        state.items = action.payload.data;
+        state.totalItems = action.payload.totalItems;
       })
       .addCase(deleteContact.rejected, isRejected)
       //edit contact

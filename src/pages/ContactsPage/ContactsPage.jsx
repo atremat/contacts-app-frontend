@@ -5,6 +5,10 @@ import {
   selectError,
   selectLoading,
   selectContactForEdit,
+  selectPage,
+  selectPerPage,
+  selectSortBy,
+  selectSortOrder,
 } from "../../redux/contacts/selectors";
 import { fetchContacts } from "../../redux/contacts/operations";
 import { useEffect } from "react";
@@ -22,9 +26,17 @@ const ContactsPage = () => {
   const dispatch = useDispatch();
   const isContactToEdit = useSelector(selectContactForEdit);
 
+  const page = useSelector(selectPage);
+  const perPage = useSelector(selectPerPage);
+  const sortBy = useSelector(selectSortBy);
+  const sortOrder = useSelector(selectSortOrder);
+  const filter = {};
+
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+    const params = { page, perPage, sortBy, sortOrder, filter };
+
+    dispatch(fetchContacts(params));
+  }, [dispatch, page, perPage]);
 
   return (
     <Box sx={{ display: "flex", justifyContent: "center", gap: 4 }}>
