@@ -19,6 +19,7 @@ import { Loader } from "../../components/Loader/Loader";
 import { SideBar } from "../../components/SideBar/SideBar";
 import toast from "react-hot-toast";
 import { FilterMobile } from "../../components/FilterMobile/FilterMobile";
+import SortSelect from "../../components/SortSelect/SortSelect";
 
 const ContactsPage = () => {
   const isLoading = useSelector(selectLoading);
@@ -36,7 +37,7 @@ const ContactsPage = () => {
     const params = { page, perPage, sortBy, sortOrder, filter };
 
     dispatch(fetchContacts(params));
-  }, [dispatch, page, perPage]);
+  }, [dispatch, page, perPage, sortBy, sortOrder]);
 
   return (
     <Box sx={{ display: "flex", justifyContent: "center", gap: 4 }}>
@@ -46,6 +47,9 @@ const ContactsPage = () => {
 
       <Box component="main" sx={{ padding: 2 }}>
         <FilterMobile />
+
+        <SortSelect />
+
         {isContactToEdit && <ContactEditForm />}
 
         <SearchBox />

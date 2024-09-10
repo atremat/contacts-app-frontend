@@ -44,6 +44,12 @@ const contactsSlice = createSlice({
     setPerPage: (state, action) => {
       state.perPage = action.payload;
     },
+    setSortBy: (state, action) => {
+      state.sortBy = action.payload;
+    },
+    setSortOrder: (state, action) => {
+      state.sortOrder = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -88,4 +94,10 @@ const contactsSlice = createSlice({
 
 export const contactsReducer = contactsSlice.reducer;
 
-export const { setContactForEdit, setPage, setPerPage } = contactsSlice.actions;
+export const {
+  setContactForEdit,
+  setPage,
+  setPerPage,
+  setSortBy,
+  setSortOrder,
+} = contactsSlice.actions;

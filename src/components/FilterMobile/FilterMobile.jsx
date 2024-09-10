@@ -39,7 +39,11 @@ export const FilterMobile = () => {
   return (
     <Box
       component="section"
-      sx={{ display: { xs: "flex", md: "none" }, mb: 2 }}
+      sx={{
+        display: { xs: "flex", md: "none" },
+        justifyContent: "center",
+        mb: 2,
+      }}
     >
       <Accordion sx={{ width: { xs: 288, sm: 343 } }}>
         <AccordionSummary>
